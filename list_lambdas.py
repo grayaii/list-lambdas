@@ -74,7 +74,7 @@ def get_days_ago(datetime_obj):
     if days_ago == 1:
         datetime_str = 'Yesterday'
     elif days_ago > 1:
-        datetime_str = '{0} days ago'.format(days_ago)
+        datetime_str = '{0}'.format(days_ago)
 
     return datetime_str
 
@@ -160,7 +160,8 @@ def print_lambda_list(args):
     regions = list_available_lambda_regions()
     progress_bar = progressbar.ProgressBar(max_value=len(regions))
     lambdas_data = []
-    for region in progress_bar(regions):
+
+    for region in ['us-west-2']:
         lambda_client = init_boto_client('lambda', region, args)
         next_marker = None
         response = lambda_client.list_functions()
